@@ -61,6 +61,7 @@ export default {
                         
                     } else {
                         this.productsAdd.unshift(value)
+                        this.$store.dispatch('productsSelect', this.productsAdd)
                     }
                 })
             } else {
