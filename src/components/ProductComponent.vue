@@ -11,16 +11,10 @@
 
         <v-card-actions class="flex-around">
           <v-btn flat class="btn_color">Comprar</v-btn>
-            <v-btn icon color="cyan darken-3">
+            <v-btn icon color="cyan darken-3" @click="addProduct(item)">
                 <v-icon color="white">shopping_cart</v-icon>
             </v-btn>
         </v-card-actions>
-
-        <!-- <v-slide-y-transition>
-          <v-card-text v-show="show">
-            I'm a thing. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
-          </v-card-text>
-        </v-slide-y-transition> -->
       </v-card>
 </template>
 
@@ -31,16 +25,24 @@
             image: String,
             title: String,
             price: Number,
-            typeMoney: String
+            typeMoney: String,
+            item: Object
         },
         data() {
             return {
-                show: false
+                show: false,
+                // counter: 0
             }
         },
         computed: {
             money() {
                 return this.typeMoney == "PEN" ? 'S/.' : this.typeMoney
+            }
+        },
+        methods: {
+            addProduct(value) {
+                this.$emit('productSelect', value)
+                // this.counter+= 1
             }
         }
     }

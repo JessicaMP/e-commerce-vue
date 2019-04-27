@@ -21,7 +21,9 @@
                         <ProductComponent 
                             :image="product.thumbnail" :title="product.title"
                             :price="product.price"
-                            :typeMoney="product.currency_id"/>
+                            :typeMoney="product.currency_id"
+                            :item="product"
+                            @productSelect="addProduct"/>
                     </v-flex>
                 </v-layout>
             </v-container>
@@ -41,6 +43,7 @@ export default {
     },
     data() {
         return {
+            productsAdd: []
         }
     },
     computed: {
@@ -48,6 +51,24 @@ export default {
             items: state => state.imagesCarousel,
             products: state => state.products
         })
+    },
+    methods: {
+        addProduct(value) {
+            if(this.productsAdd.length > 0 ) {
+                let ids = this.productsAdd.map(e => e.id)
+                ids.forEach((e, i) => {
+                    if(ids.includes(value.id)) {
+                        
+                    } else {
+                        this.productsAdd.unshift(value)
+                    }
+                })
+            } else {
+                if(this.productsAdd.length == 0) {
+                    this.productsAdd.push(value)
+                }
+            }
+        }
     },
     created() {
         this.$store.dispatch('getCollections')
