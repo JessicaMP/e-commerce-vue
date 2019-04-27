@@ -7,9 +7,19 @@
             <v-btn icon>
                 <v-icon>shopping_cart</v-icon>
             </v-btn>
-            <v-btn icon>
+            <v-btn icon @click="redirectLogin">
                 <v-icon>account_circle</v-icon>
             </v-btn>
     </v-toolbar>
   </header>
 </template>
+
+<script>
+export default {
+    methods: {
+        redirectLogin() {
+            this.$router.push('/login')
+        }
+    }
+}
+</script>
