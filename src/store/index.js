@@ -18,6 +18,19 @@ export default new Vuex.Store({
             {
                 src: 'https://images.pexels.com/photos/50987/money-card-business-credit-card-50987.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
             }
-        ]
+        ],
+        products: []
+    },
+    actions: {
+        async getCollections({commit}) {
+           const response =  await fetch('https://api.mercadolibre.com/sites/MPE/search?category=MPE1051')
+           const {results} = await response.json()
+           commit('setData', results)
+        }
+    },
+    mutations: {
+        setData(state, payload) {
+            state.products = payload
+        }
     }
 });
