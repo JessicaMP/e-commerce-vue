@@ -3,7 +3,7 @@
         <form class="style-form">
 						<label class="title">BIENVENIDO A TU TIENDA ONLINE</label>
             <v-text-field
-            v-model="name"
+            v-model="user"
             :counter="10"
             label="Usuario"
             data-vv-name="name"
@@ -44,7 +44,7 @@
     // },
 
     data: () => ({
-      name: '',
+      user: '',
 			email: '',
 			show1: false,
 			password: '',
@@ -62,6 +62,9 @@
 
     methods: {
       submit () {
+        if( this.user === 'america' && this.password === 'america2') {
+          this.$router.push('/')
+        }
         // this.$validator.validateAll()
       },
       clear () {
